@@ -1,8 +1,9 @@
 :root {
   --accent: #e8a0bf;
-  --text: #1a1a1a;
-  --muted: #555;
-  --background: #ffffff;
+  --text: #ffffff;
+  --muted: #ffffff;
+  --background-start: #f6a6c7;
+  --background-end: #d9769f;
   --max-width: 720px;
 }
 
@@ -18,7 +19,12 @@ body {
   margin: 0;
   padding: 0;
   color: var(--text);
-  background: var(--background);
+  background: linear-gradient(
+    135deg,
+    var(--background-start),
+    var(--background-end)
+  );
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   line-height: 1.6;
@@ -28,12 +34,12 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--accent);
+  color: var(--text);
   line-height: 1.2;
 }
 
 a {
-  color: var(--accent);
+  color: var(--text);
   text-decoration: underline;
 }
 
