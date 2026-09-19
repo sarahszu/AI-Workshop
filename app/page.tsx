@@ -12,6 +12,20 @@ export default function Home() {
       </header>
 
       <main>
+        <section className="semester" aria-labelledby="semester-heading">
+          <h2 id="semester-heading">This semester</h2>
+          <ul>
+            <li>
+              Advanced Korean language study to prepare for a year overseas
+            </li>
+            <li>Learning to code and use AI in SLS480E</li>
+            <li>
+              Learning how to teach a second language via a teaching
+              practicum!
+            </li>
+          </ul>
+        </section>
+
         <section className="about" aria-labelledby="about-heading">
           <h2 id="about-heading">About</h2>
           <p>
@@ -24,22 +38,13 @@ export default function Home() {
             career.
           </p>
         </section>
-
-        {/* Placeholder content: these three items are examples and should be replaced with Sarah's real coursework and activities. */}
-        <section className="semester" aria-labelledby="semester-heading">
-          <h2 id="semester-heading">This semester</h2>
-          <ul>
-            <li>Advanced Korean Language coursework</li>
-            <li>Second Language Acquisition Theory and Methods seminar</li>
-            <li>Teaching practicum in a language classroom setting</li>
-          </ul>
-        </section>
       </main>
 
       <footer className="footer">
         <p>
           Sarah Szu &copy; {currentYear}
         </p>
+        <p>Built with Claude Code</p>
       </footer>
     </>
   );
