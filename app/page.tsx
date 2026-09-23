@@ -6,7 +6,7 @@ export default function Home() {
       <header className="hero">
         <h1>Sarah Szu</h1>
         <p className="tagline">
-          a senior at UH Manoa studying Korean and Second Language Studies
+          a senior at UH Mānoa studying Korean and Second Language Studies
           Teaching
         </p>
       </header>
@@ -29,7 +29,7 @@ export default function Home() {
         <section className="about" aria-labelledby="about-heading">
           <h2 id="about-heading">About</h2>
           <p>
-            Sarah Szu is a senior at the University of Hawaii at Manoa,
+            Sarah Szu is a senior at the University of Hawaii at Mānoa,
             studying Korean and Second Language Studies Teaching. Her
             coursework blends language study with the theory and practice of
             teaching, giving her a foundation in both fluency and pedagogy.

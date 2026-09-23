@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Sarah Szu",
-  description: "Personal site of Sarah Szu, a senior at UH Manoa.",
+  description: "Personal site of Sarah Szu, a senior at UH Mānoa.",
 };
 
 export default function RootLayout({
