@@ -14,11 +14,10 @@ Last updated: 2026-10-01
 - Nothing known yet.
 
 ## Environment notes
-- The site does not use Supabase yet: no sign-in, no database tables.
-- Not yet confirmed: whether the Supabase URL and public key are set as environment variables in Vercel.
+- The site uses Supabase for sign-in. There are no database tables yet.
+- The Supabase URL and public key are set as environment variables in Vercel.
+- "Confirm email" is turned off in Supabase, so a new account can sign in straight away.
 - Claude Code runs in the browser at claude.ai/code with the repo already selected.
 
 ## Next session
-- Decide whether to turn off "Confirm email" in Supabase. Supabase's built-in email service likely only sends to members of the Supabase team, so strangers may never get a confirmation email.
-- Check that the Supabase environment variables are set in Vercel.
-- Start Slice 1: sign up and log in.
+- Start Slice 2: add tasks tagged with a skill.
