@@ -18,10 +18,11 @@ Last updated: 2026-10-01
 - Nothing known yet.
 
 ## Environment notes
-- The site uses Supabase for sign-in. There are no database tables yet.
+- The site uses Supabase for sign-in.
+- The database has one table, `tasks`, with Row Level Security on, so each user can only read and add their own tasks.
 - The Supabase URL and public key are set as environment variables in Vercel.
 - "Confirm email" is turned off in Supabase, so a new account can sign in straight away.
 - Claude Code runs in the browser at claude.ai/code with the repo already selected.
 
 ## Next session
-- Start Slice 2: add tasks tagged with a skill.
+- Start Slice 3: mark tasks done and see the avoided skill.
