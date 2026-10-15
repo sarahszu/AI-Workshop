@@ -127,3 +127,41 @@ export async function setPriority(
   revalidatePath("/tasks");
   return { error: null, saved: true };
 }
+
+// What a task's Add note form shows after you click Add note.
+export type AddNoteState = {
+  error: string | null;
+  saved: number;
+};
+
+export async function addNote(
+  taskId: string,
+  prev: AddNoteState,
+  formData: FormData
+): Promise<AddNoteState> {
+  const body = String(formData.get("body") ?? "").trim();
+
+  if (!body) return { error: "Type a note.", saved: prev.saved };
+  if (body.length > 2000) {
+    return { error: "Notes can be at most 2000 characters.", saved: prev.saved };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+
+  // The database only accepts a note on a task that is yours.
+  const { error } = await supabase
+    .from("task_notes")
+    .insert({ task_id: taskId, user_id: user.id, body });
+
+  if (error) {
+    return { error: "Could not save the note. Please try again.", saved: prev.saved };
+  }
+
+  revalidatePath("/tasks");
+  // Counting saves lets the form know to empty the box after each one.
+  return { error: null, saved: prev.saved + 1 };
+}
