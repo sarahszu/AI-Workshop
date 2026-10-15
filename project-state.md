@@ -15,17 +15,20 @@ Last updated: 2026-10-15
 - Each person sees only their own tasks. A different account cannot see them.
 - Next to each task, "Add due date" opens a date box; after Save the date shows as "Due Oct 15, 2026" with a Change button. A due date before today shows in red. "Today" comes from the person's own device, so their time zone is used.
 - Each task shows its priority as a colored word: Low in green, Normal in orange, High in red. "Change priority" opens a Low / Normal / High menu with Save. New tasks start as Normal. The list is sorted High, then Normal, then Low; tasks with the same priority stay in the order they were added.
+- Under each task's name and skill label, one outlined area holds its priority, due date and "Notes (n)". Clicking "Notes (n)" opens that task's notes, oldest first like a comment thread, each with the date and time it was added in the person's own time zone. Typing in the box and clicking "Add note" adds a note to the bottom. An empty note shows "Type a note." Notes can be at most 2000 characters and cannot be edited or deleted.
 
 ## Broken or flaky
 - Nothing known yet.
 
 ## Environment notes
 - The site uses Supabase for sign-in.
-- The database has one table, `tasks`, with Row Level Security on, so each user can only read, add and change their own tasks.
-- `tasks` has a `due_date` column (a date, empty until set) and a `priority` column (Low, Normal or High; starts as Normal; the database refuses any other value).
+- The database has two tables, both with Row Level Security on:
+  - `tasks`: each user can only read, add and change their own tasks.
+  - `tasks` has a `due_date` column (a date, empty until set) and a `priority` column (Low, Normal or High; starts as Normal; the database refuses any other value).
+  - `task_notes`: one row per note, linked to its task. Each user can only read their own notes and add notes to their own tasks. Nobody can change or delete a note. Deleting a task deletes its notes.
 - The Supabase URL and public key are set as environment variables in Vercel.
 - "Confirm email" is turned off in Supabase, so a new account can sign in straight away.
 - Claude Code runs in the browser at claude.ai/code with the repo already selected.
 
 ## Next session
-- Slices 3 (Due dates) and 4 (Task priority) are done. Start Slice 5: notes on a task.
+- Slices 3 (Due dates), 4 (Task priority) and 5 (Notes on a task) are done. Start Slice 6: mark tasks done and see the avoided skill.
