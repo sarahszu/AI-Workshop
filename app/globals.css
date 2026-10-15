@@ -241,3 +241,38 @@ button:disabled {
   background: #ffffff;
   font-size: 0.85rem;
 }
+
+/* Due date next to each task */
+.task-list li {
+  flex-wrap: wrap;
+}
+
+.task-list .task-title {
+  flex-grow: 1;
+}
+
+.due-date,
+.due-date-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.due-date-form input {
+  font: inherit;
+  padding: 0.4rem;
+  border: 1px solid #7a9cc0;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.due-date-form .form-error {
+  flex-basis: 100%;
+}
+
+.past-due {
+  color: #a40000;
+  font-weight: 600;
+}

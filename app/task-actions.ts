@@ -44,3 +44,43 @@ export async function addTask(
   revalidatePath("/tasks");
   return { error: null, title: "", skill: "" };
 }
+
+// What a task's due date form shows after you click Save.
+export type DueDateState = {
+  error: string | null;
+  saved: boolean;
+};
+
+export async function setDueDate(
+  taskId: string,
+  _prev: DueDateState,
+  formData: FormData
+): Promise<DueDateState> {
+  const dueDate = String(formData.get("due_date") ?? "");
+
+  // The date box sends dates as year-month-day, for example 2026-10-15.
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) {
+    return { error: "Type a date.", saved: false };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+
+  // The database only lets you change your own tasks, so if this task is
+  // not yours nothing comes back and we show an error.
+  const { data, error } = await supabase
+    .from("tasks")
+    .update({ due_date: dueDate })
+    .eq("id", taskId)
+    .select("id");
+
+  if (error || !data || data.length === 0) {
+    return { error: "Could not save the date. Please try again.", saved: false };
+  }
+
+  revalidatePath("/tasks");
+  return { error: null, saved: true };
+}

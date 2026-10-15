@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 import { createClient } from "../supabase-server";
 import AddTaskForm from "./add-task-form";
+import DueDate from "./due-date";
 
 // The study task list: a form to add a task, then every task you have
-// added, each with its skill label. The database only ever hands back
-// your own tasks.
+// added, each with its skill label and due date. The database only ever
+// hands back your own tasks.
 export default async function TasksPage() {
   const supabase = await createClient();
   const {
@@ -15,7 +16,7 @@ export default async function TasksPage() {
 
   const { data: tasks, error } = await supabase
     .from("tasks")
-    .select("id, title, skill")
+    .select("id, title, skill, due_date")
     .order("created_at", { ascending: true });
 
   return (
@@ -30,7 +31,8 @@ export default async function TasksPage() {
         <ul className="task-list">
           {tasks.map((task) => (
             <li key={task.id}>
-              <span>{task.title}</span>
+              <span className="task-title">{task.title}</span>
+              <DueDate taskId={task.id} dueDate={task.due_date} />
               <span className="skill-label">{task.skill}</span>
             </li>
           ))}
